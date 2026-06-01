@@ -13,3 +13,18 @@ management:
   zipkin:
     tracing:
       endpoint: http://${ZIPKIN_HOSTNAME:localhost}:9411/api/v2/spans
+
+security:
+  oauth2:
+    client:
+      registration:
+        okta:
+          client-id: ${OKTA_CLIENT_ID}
+          client-secret: ${OKTA_CLIENT_SECRET}
+          scope: openid, profile, email, offline_access
+      provider:
+        okta:
+          issuer-uri: https://integrator-3283424.okta.com/oauth2/default
+    resourceserver:
+      jwt:
+        issuer-uri: https://integrator-3283424.okta.com/oauth2/default
