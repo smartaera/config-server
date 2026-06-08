@@ -16,6 +16,8 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
+auth0:
+  audience: https://dev-bdj1h0lwbhif83d1.us.auth0.com/api/v2/
 eureka:
   instance:
     prefer-ip-address: true
