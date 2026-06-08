@@ -14,20 +14,21 @@ management:
     tracing:
       endpoint: http://${ZIPKIN_HOSTNAME:localhost}:9411/api/v2/spans
 
-security:
-  oauth2:
-    client:
-      registration:
-        auth0:
-          client-id: ${AUTH0_CLIENT_ID}
-          client-secret: ${AUTH0_CLIENT_SECRET}
-          scope: openid, profile, email, offline_access
-      provider:
-        auth0:
-          issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
-      resourceserver:
-        jwt:
-          issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
+spring: 
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: ${AUTH0_CLIENT_ID}
+            client-secret: ${AUTH0_CLIENT_SECRET}
+            scope: openid, profile, email, offline_access
+        provider:
+          auth0:
+            issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
+        resourceserver:
+          jwt:
+            issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
 
 # OKTA CONFIGURATION (commented out - kept for reference)
 #security:
