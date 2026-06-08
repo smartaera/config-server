@@ -14,7 +14,7 @@ management:
     tracing:
       endpoint: http://${ZIPKIN_HOSTNAME:localhost}:9411/api/v2/spans
 
-spring: 
+spring:
   security:
     oauth2:
       client:
@@ -26,9 +26,9 @@ spring:
         provider:
           auth0:
             issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
-        resourceserver:
-          jwt:
-            issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-bdj1h0lwbhif83d1.us.auth0.com/
 
 # OKTA CONFIGURATION (commented out - kept for reference)
 #security:
