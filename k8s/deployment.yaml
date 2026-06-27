@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-app
+spec:
+  selector:
+    matchLabels:
+      app: config-server-app
+  template:
+    metadata:
+      labels:
+        app: config-server-app
+    spec:
+      containers:
+        - name: config-server-app
+          image: smartaera/configserver:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8088
+          env:
+            - name: EUREKA_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: eureka_service_address
+                  name: eureka-cm
+            - name: ZIPKIN_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  key: zipkin_url
+                  name: zipkin-cm
+          securityContext:
+            runAsNonRoot: true
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-svc
+spec:
+  selector:
+    app: config-server-app
+  ports:
+    - port: 80
+      targetPort: 8088
